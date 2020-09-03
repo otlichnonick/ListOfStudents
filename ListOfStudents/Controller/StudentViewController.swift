@@ -7,12 +7,19 @@
 //
 
 import UIKit
+import RealmSwift
 
 class StudentViewController: UIViewController, UITextFieldDelegate {
     
     var name: String?
     var surname: String?
     var assessment: String?
+    var selectedStudent: Student?
+    var titleAction: String?
+    
+    let realm = try! Realm()
+    
+    //MARK: - Create UI Elements
     
     @IBOutlet weak var updaneData: UILabel!
     @IBOutlet weak var nameTextField: UITextField!
@@ -45,15 +52,36 @@ class StudentViewController: UIViewController, UITextFieldDelegate {
         nameTextField.keyboardType = .default
         surnameTextField.keyboardType = .default
         assessmentTextField.keyboardType = .numberPad
+        nameTextField.text = name
+        surnameTextField.text = surname
+        assessmentTextField.text = assessment
+        updaneData.text = titleAction
     }
     
     //MARK: - Setup button
     
     @IBAction func saveButton(_ sender: UIButton) {
+        do {
+            try realm.write {
+                let newStudent = Student()
+                newStudent.name = nameTextField.text!
+                newStudent.surname = surnameTextField.text!
+                newStudent.assessment = assessmentTextField.text!
+                if newStudent != selectedStudent {
+                    realm.add(newStudent)
+                    if selectedStudent != nil {
+                        realm.delete(selectedStudent!)
+                    }
+                }
+            }
+        } catch {
+            print("Error saving new student. \(error)")
+        }
+        _ = navigationController?.popViewController(animated: true)
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
-        
+        _ = navigationController?.popViewController(animated: true)
     }
     
     //MARK: - UITextFieldDelegate methods
@@ -70,17 +98,48 @@ class StudentViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField.tag == 1 || textField.tag == 2 {
-            return string.rangeOfCharacter(from: CharacterSet.letters) != nil
-        } else if textField.tag == 3 {
-            if textField.text!.count < 1 {
-                return string.rangeOfCharacter(from: CharacterSet(charactersIn: "67890")) == nil
+        if textField.tag == 3 {
+            guard let textFieldText = textField.text,
+                let rangeOfTextToReplace = Range(range, in: textFieldText) else {
+                    return false
             }
+            let substringToReplace = textFieldText[rangeOfTextToReplace]
+            let count = textFieldText.count - substringToReplace.count + string.count
+            return count <= 1
+        } else {
+            return true
         }
-        return false
     }
-    
-
     
 }
 
+extension UITextField {
+    
+    func validateNameAndSurname(field: UITextField) -> String? {
+        guard let text = field.text else {
+            return nil
+        }
+        let RegEx = "1234567890^[^\\d!@#£$%^&*<>()/\\\\~\\[\\]\\{\\}\\?\\_\\.\\'\\'\\,\\:\\;|\"+=-]+$"
+        let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
+        let isValid = Test.evaluate(with: text)
+        
+        if (isValid) {
+            return text
+        }
+        return nil
+    }
+    
+    func validateAssessment(field: UITextField) -> String? {
+        guard let text = field.text else {
+            return nil
+        }
+        let RegEx = "67890"
+        let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
+        let isValid = Test.evaluate(with: text)
+        
+        if (isValid) {
+            return text
+        }
+        return nil
+    }
+}

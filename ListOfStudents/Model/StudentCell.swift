@@ -17,5 +17,9 @@ class StudentCell: UITableViewCell {
         super.awakeFromNib()
     }
 
+    func setupCell(with student: Student) {
+        fullNameLabel.text = student.name + " " + student.surname
+        assessmentLabel.text = student.assessment
+    }
 
 }

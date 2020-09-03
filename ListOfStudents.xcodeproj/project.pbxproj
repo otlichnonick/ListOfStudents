@@ -9,8 +9,8 @@
 /* Begin PBXBuildFile section */
 		3A078CC024FFA1A40053A0D1 /* ListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A078CBF24FFA1A40053A0D1 /* ListViewController.swift */; };
 		3A078CC224FFAF150053A0D1 /* StudentViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A078CC124FFAF150053A0D1 /* StudentViewController.swift */; };
+		3A078CCA25011DFF0053A0D1 /* CustomCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A078CC925011DFF0053A0D1 /* CustomCell.xib */; };
 		3A95D60D24FF85DE00F5B160 /* StudentCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A95D60B24FF85DE00F5B160 /* StudentCell.swift */; };
-		3A95D60E24FF85DE00F5B160 /* StudentCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 3A95D60C24FF85DE00F5B160 /* StudentCell.xib */; };
 		3A95D61024FF85FD00F5B160 /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3A95D60F24FF85FD00F5B160 /* Student.swift */; };
 		3AA3FCA424FF7F0F0080FDCE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA3FCA324FF7F0F0080FDCE /* AppDelegate.swift */; };
 		3AA3FCA624FF7F0F0080FDCE /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3AA3FCA524FF7F0F0080FDCE /* SceneDelegate.swift */; };
@@ -23,8 +23,8 @@
 /* Begin PBXFileReference section */
 		3A078CBF24FFA1A40053A0D1 /* ListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewController.swift; sourceTree = "<group>"; };
 		3A078CC124FFAF150053A0D1 /* StudentViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentViewController.swift; sourceTree = "<group>"; };
+		3A078CC925011DFF0053A0D1 /* CustomCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCell.xib; sourceTree = "<group>"; };
 		3A95D60B24FF85DE00F5B160 /* StudentCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StudentCell.swift; sourceTree = "<group>"; };
-		3A95D60C24FF85DE00F5B160 /* StudentCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = StudentCell.xib; sourceTree = "<group>"; };
 		3A95D60F24FF85FD00F5B160 /* Student.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		3AA3FCA024FF7F0F0080FDCE /* ListOfStudents.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ListOfStudents.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		3AA3FCA324FF7F0F0080FDCE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -104,8 +104,8 @@
 			isa = PBXGroup;
 			children = (
 				3A95D60B24FF85DE00F5B160 /* StudentCell.swift */,
-				3A95D60C24FF85DE00F5B160 /* StudentCell.xib */,
 				3A95D60F24FF85FD00F5B160 /* Student.swift */,
+				3A078CC925011DFF0053A0D1 /* CustomCell.xib */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -189,8 +189,8 @@
 			files = (
 				3AA3FCB024FF7F100080FDCE /* LaunchScreen.storyboard in Resources */,
 				3AA3FCAD24FF7F100080FDCE /* Assets.xcassets in Resources */,
+				3A078CCA25011DFF0053A0D1 /* CustomCell.xib in Resources */,
 				3AA3FCAB24FF7F0F0080FDCE /* Main.storyboard in Resources */,
-				3A95D60E24FF85DE00F5B160 /* StudentCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
