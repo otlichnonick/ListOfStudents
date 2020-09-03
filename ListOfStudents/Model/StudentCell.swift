@@ -11,17 +11,11 @@ import UIKit
 class StudentCell: UITableViewCell {
     
     @IBOutlet weak var fullNameLabel: UILabel!
-    
     @IBOutlet weak var assessmentLabel: UILabel!
-    
 
     override func awakeFromNib() {
         super.awakeFromNib()
     }
-    
-    func setupCell(student: Student) {
-        fullNameLabel.text = student.name.capitalized + " " + student.surname.capitalized
-        assessmentLabel.text = student.assessment
-    }
+
 
 }

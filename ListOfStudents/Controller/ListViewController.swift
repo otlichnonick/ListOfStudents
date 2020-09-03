@@ -29,9 +29,13 @@ class ListViewController: UITableViewController {
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "StudentCell", for: indexPath) as! StudentCell
         
-        // Configure the cell...
+        if let student = students?[indexPath.row] {
+            cell.fullNameLabel.text = student.name.capitalized + " " + student.surname.capitalized
+            cell.assessmentLabel.text = student.assessment
+        }
+        
         
         return cell
     }
