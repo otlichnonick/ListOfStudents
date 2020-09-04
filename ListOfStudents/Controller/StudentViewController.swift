@@ -61,6 +61,7 @@ class StudentViewController: UIViewController, UITextFieldDelegate {
     //MARK: - Setup button
     
     @IBAction func saveButton(_ sender: UIButton) {
+        if nameTextField.text != "" && surnameTextField.text != "" && assessmentTextField.text != "" {
         do {
             try realm.write {
                 let newStudent = Student()
@@ -78,10 +79,20 @@ class StudentViewController: UIViewController, UITextFieldDelegate {
             print("Error saving new student. \(error)")
         }
         _ = navigationController?.popViewController(animated: true)
+        } else {
+            getAlert(with: "Все поля должны быть заполнены!")
+        }
     }
     
     @IBAction func cancelButton(_ sender: UIButton) {
         _ = navigationController?.popViewController(animated: true)
+    }
+    
+    func getAlert(with text: String) {
+        let alert = UIAlertController(title: "Некорректные данные", message: text , preferredStyle: .alert)
+        let action = UIAlertAction(title: "OK", style: .default)
+        alert.addAction(action)
+        present(alert, animated: true, completion: nil)
     }
     
     //MARK: - UITextFieldDelegate methods
@@ -98,48 +109,25 @@ class StudentViewController: UIViewController, UITextFieldDelegate {
     }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
-        if textField.tag == 3 {
-            guard let textFieldText = textField.text,
-                let rangeOfTextToReplace = Range(range, in: textFieldText) else {
-                    return false
+        guard let text = textField.text else { return false }
+        let newLenght = text.count + string.count - range.length
+        if textField.tag == 1 || textField.tag == 2 {
+            if string.rangeOfCharacter(from: CharacterSet.letters) != nil {
+                return newLenght >= 0
+            } else if string.rangeOfCharacter(from: CharacterSet.letters.inverted) != nil{
+                getAlert(with: "Поля ИМЯ и ФАМИЛИЯ можно заполнить только буквами")
             }
-            let substringToReplace = textFieldText[rangeOfTextToReplace]
-            let count = textFieldText.count - substringToReplace.count + string.count
-            return count <= 1
-        } else {
-            return true
         }
+        if textField.tag == 3 {
+            let charactersSet = CharacterSet(charactersIn: "12345")
+            if string.rangeOfCharacter(from: charactersSet) != nil {
+                return newLenght <= 1
+            } else if string.rangeOfCharacter(from: charactersSet.inverted) != nil {
+                getAlert(with: "Введите число от 1 до 5")
+            }
+        }
+        return true
     }
     
-}
-
-extension UITextField {
     
-    func validateNameAndSurname(field: UITextField) -> String? {
-        guard let text = field.text else {
-            return nil
-        }
-        let RegEx = "1234567890^[^\\d!@#£$%^&*<>()/\\\\~\\[\\]\\{\\}\\?\\_\\.\\'\\'\\,\\:\\;|\"+=-]+$"
-        let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
-        let isValid = Test.evaluate(with: text)
-        
-        if (isValid) {
-            return text
-        }
-        return nil
-    }
-    
-    func validateAssessment(field: UITextField) -> String? {
-        guard let text = field.text else {
-            return nil
-        }
-        let RegEx = "67890"
-        let Test = NSPredicate(format:"SELF MATCHES %@", RegEx)
-        let isValid = Test.evaluate(with: text)
-        
-        if (isValid) {
-            return text
-        }
-        return nil
-    }
 }

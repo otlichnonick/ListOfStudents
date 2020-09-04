@@ -12,9 +12,10 @@
             <objects>
                 <tableViewController id="fdA-2q-ztS" customClass="ListViewController" customModule="ListOfStudents" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="id0-op-vMH">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="sectionIndexBackgroundColor" red="0.72822695520000003" green="0.83609024710000002" blue="0.83743780850000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <connections>
                             <outlet property="dataSource" destination="fdA-2q-ztS" id="eIf-ub-qLi"/>
                             <outlet property="delegate" destination="fdA-2q-ztS" id="6nJ-Dd-06V"/>
@@ -22,6 +23,7 @@
                     </tableView>
                     <navigationItem key="navigationItem" id="m0n-Sr-5VY">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="Hg4-37-FIZ">
+                            <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                             <connections>
                                 <action selector="addButtonPressed:" destination="fdA-2q-ztS" id="pGu-Lw-4oF"/>
                                 <segue destination="qnq-ah-2Rj" kind="show" identifier="createNewStudent" id="U7d-eE-Tha"/>
@@ -38,20 +40,20 @@
             <objects>
                 <viewController storyboardIdentifier="StudentViewController" id="qnq-ah-2Rj" customClass="StudentViewController" customModule="ListOfStudents" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="chu-WU-cOU">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="808"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Добавить нового студента" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="10" translatesAutoresizingMaskIntoConstraints="NO" id="eXK-9x-lFJ">
-                                <rect key="frame" x="20" y="117.99999999999999" width="374" height="29.333333333333329"/>
+                                <rect key="frame" x="20" y="30" width="374" height="29.333333333333329"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="25"/>
-                                <nil key="textColor"/>
+                                <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F28-TR-sZu">
-                                <rect key="frame" x="8" y="155.33333333333337" width="398" height="203.66666666666663"/>
+                                <rect key="frame" x="8" y="67.333333333333329" width="398" height="221.33333333333337"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="OR1-wm-NF6">
-                                <rect key="frame" x="20" y="367" width="374" height="170"/>
+                                <rect key="frame" x="20" y="296.66666666666669" width="374" height="170"/>
                                 <subviews>
                                     <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="имя" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5SB-aD-Hxg">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
@@ -59,7 +61,7 @@
                                             <constraint firstAttribute="height" constant="40" id="lXu-Na-33o"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                     </textField>
                                     <textField opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="фамилия" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="JS8-d5-JqY">
                                         <rect key="frame" x="0.0" y="65" width="374" height="40"/>
@@ -67,10 +69,10 @@
                                             <constraint firstAttribute="height" constant="40" id="lIs-wn-Ixb"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                                        <textInputTraits key="textInputTraits"/>
+                                        <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                     </textField>
                                     <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="средний балл" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="40w-yo-5qu">
-                                        <rect key="frame" x="0.0" y="130" width="374" height="40"/>
+                                        <rect key="frame" x="0.0" y="129.99999999999994" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="cwa-Rc-pXl"/>
                                         </constraints>
@@ -85,10 +87,10 @@
                                 </constraints>
                             </stackView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7QJ-2U-dnv">
-                                <rect key="frame" x="8" y="545" width="398" height="239"/>
+                                <rect key="frame" x="8" y="474.66666666666657" width="398" height="221.33333333333331"/>
                             </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vYi-fd-yz4">
-                                <rect key="frame" x="20" y="792" width="374" height="50"/>
+                                <rect key="frame" x="20" y="704" width="374" height="50"/>
                                 <subviews>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="CJx-fr-atD">
                                         <rect key="frame" x="0.0" y="0.0" width="177" height="50"/>
@@ -116,7 +118,7 @@
                                 </constraints>
                             </stackView>
                         </subviews>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <color key="backgroundColor" red="0.72822695520009562" green="0.83609024707269008" blue="0.83743780850000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="eXK-9x-lFJ" secondAttribute="trailing" constant="20" id="1QS-1V-BpA"/>
                             <constraint firstItem="eXK-9x-lFJ" firstAttribute="leading" secondItem="sbG-UY-Oga" secondAttribute="leading" constant="20" id="2By-eX-9yR"/>
@@ -132,7 +134,7 @@
                             <constraint firstItem="F28-TR-sZu" firstAttribute="leading" secondItem="sbG-UY-Oga" secondAttribute="leading" constant="8" id="Xsj-oH-3eq"/>
                             <constraint firstItem="7QJ-2U-dnv" firstAttribute="top" secondItem="OR1-wm-NF6" secondAttribute="bottom" constant="8" symbolic="YES" id="Yxt-yI-0ku"/>
                             <constraint firstItem="sbG-UY-Oga" firstAttribute="trailing" secondItem="vYi-fd-yz4" secondAttribute="trailing" constant="20" id="btd-SV-s32"/>
-                            <constraint firstItem="7QJ-2U-dnv" firstAttribute="height" secondItem="F28-TR-sZu" secondAttribute="height" multiplier="1.1746" id="gex-2A-uh1"/>
+                            <constraint firstItem="7QJ-2U-dnv" firstAttribute="height" secondItem="F28-TR-sZu" secondAttribute="height" id="gex-2A-uh1"/>
                             <constraint firstItem="vYi-fd-yz4" firstAttribute="leading" secondItem="sbG-UY-Oga" secondAttribute="leading" constant="20" id="hf8-yT-DkB"/>
                             <constraint firstItem="7QJ-2U-dnv" firstAttribute="leading" secondItem="sbG-UY-Oga" secondAttribute="leading" constant="8" id="zNG-Tk-pl0"/>
                         </constraints>
@@ -157,9 +159,15 @@
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="lxe-Zl-Q8b" sceneMemberID="viewController">
                     <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="kev-nQ-9A6">
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" translucent="NO" id="kev-nQ-9A6">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="backgroundColor" red="0.72156862749999995" green="0.83137254900000002" blue="0.83137254900000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" red="0.72156862745098038" green="0.83137254901960778" blue="0.83137254901960778" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
