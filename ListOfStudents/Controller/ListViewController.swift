@@ -11,104 +11,65 @@ import RealmSwift
 
 class ListViewController: UITableViewController {
     
-    let realm = try! Realm()
-    
-    var students: Results<Student>?
+    let persistenceManager = PersistenceManager()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        loadList()
-        
-        title = "Список студентов"
-        
-        tableView.register(UINib(nibName: "CustomCell", bundle: nil), forCellReuseIdentifier: "CustomCell")
-        
+        configureTableView()
+        persistenceManager.loadList()
+        title = K.title
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(true)
-        loadList()
-    }
-    
-    //MARK: - Data manipulation methods
-    
-    func loadList() {
-        students = realm.objects(Student.self).sorted(byKeyPath: "name")
-        
+        super.viewWillAppear(animated)
+        persistenceManager.loadList()
         tableView.reloadData()
     }
     
-    func deleteItem(at indexPath: IndexPath) {
-        if let item = students?[indexPath.row] {
-            do {
-                try realm.write {
-                    realm.delete(item)
-                }
-            } catch {
-                print("Error deleting an item. \(error)")
-            }
-        }
+    func configureTableView() {
+        tableView.tableFooterView = UIView(frame: .zero)
+        tableView.register(UINib(nibName: K.cellName, bundle: nil), forCellReuseIdentifier: K.cellIdentifier)
+        tableView.separatorColor = .label
     }
     
-    // MARK: - Table view data source
-    
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        // #warning Incomplete implementation, return the number of rows
-        return students?.count ?? 1
+        return persistenceManager.students?.count ?? 0
     }
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CustomCell", for: indexPath) as! StudentCell
-        
-        if let student = students?[indexPath.row] {
+        let cell = tableView.dequeueReusableCell(withIdentifier: K.cellIdentifier, for: indexPath) as! StudentCell
+        if let array = persistenceManager.students {
+            let student = array[indexPath.row]
             cell.setupCell(with: student)
         }
         return cell
     }
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        
         if editingStyle == .delete {
-            deleteItem(at: indexPath)
+            guard let student = persistenceManager.students?[indexPath.row] else { return }
+            persistenceManager.deleteItem(student: student)
             tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
         }
     }
-    
-    
-    //MARK: - TableView delegate methods
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let vc = storyboard.instantiateViewController(withIdentifier: "StudentViewController") as! StudentViewController
-        if let student = students?[indexPath.row] {
-            vc.name = student.name
-            vc.surname = student.surname
-            vc.assessment = student.assessment
-            vc.selectedStudent = student
-            vc.titleAction = "Обновить данные"
-            navigationController?.pushViewController(vc, animated: true)
+        let storyboard = UIStoryboard(name: K.storyboardName, bundle: nil)
+        let studentVC = storyboard.instantiateViewController(withIdentifier: K.studentInfoVC) as! StudentViewController
+        if let student = persistenceManager.students?[indexPath.row] {
+            studentVC.configureVC(with: student, and: .updateItem)
+            navigationController?.pushViewController(studentVC, animated: true)
         }
     }
     
-    
-    //MARK: - Add New Student
-    
     @IBAction func addButtonPressed(_ sender: UIBarButtonItem) {
-        performSegue(withIdentifier: "createNewStudent", sender: self)
+        performSegue(withIdentifier: K.segueToNewItem, sender: self)
     }
     
-    // MARK: - Navigation
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-        if segue.identifier == "createNewStudent" {
+        if segue.identifier == K.segueToNewItem {
             let destinationVC = segue.destination as! StudentViewController
-            destinationVC.name = ""
-            destinationVC.surname = ""
-            destinationVC.assessment = ""
-            destinationVC.titleAction = "Добавить нового студента"
+            destinationVC.configureVC(with: nil, and: .createItem)
         }
     }
 }

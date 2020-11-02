@@ -49,11 +49,8 @@
                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="F28-TR-sZu">
-                                <rect key="frame" x="8" y="67.333333333333329" width="398" height="221.33333333333337"/>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" alignment="top" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="OR1-wm-NF6">
-                                <rect key="frame" x="20" y="296.66666666666669" width="374" height="170"/>
+                                <rect key="frame" x="20" y="319" width="374" height="170"/>
                                 <subviews>
                                     <textField opaque="NO" tag="1" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="имя" minimumFontSize="17" clearButtonMode="whileEditing" translatesAutoresizingMaskIntoConstraints="NO" id="5SB-aD-Hxg">
                                         <rect key="frame" x="0.0" y="0.0" width="374" height="40"/>
@@ -72,7 +69,7 @@
                                         <textInputTraits key="textInputTraits" autocapitalizationType="words"/>
                                     </textField>
                                     <textField opaque="NO" tag="3" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="средний балл" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="40w-yo-5qu">
-                                        <rect key="frame" x="0.0" y="129.99999999999994" width="374" height="40"/>
+                                        <rect key="frame" x="0.0" y="130" width="374" height="40"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="40" id="cwa-Rc-pXl"/>
                                         </constraints>
@@ -86,9 +83,6 @@
                                     <constraint firstItem="JS8-d5-JqY" firstAttribute="width" secondItem="5SB-aD-Hxg" secondAttribute="width" id="mut-Cg-qYv"/>
                                 </constraints>
                             </stackView>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="7QJ-2U-dnv">
-                                <rect key="frame" x="8" y="474.66666666666657" width="398" height="221.33333333333331"/>
-                            </view>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="vYi-fd-yz4">
                                 <rect key="frame" x="20" y="704" width="374" height="50"/>
                                 <subviews>
@@ -122,21 +116,13 @@
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="eXK-9x-lFJ" secondAttribute="trailing" constant="20" id="1QS-1V-BpA"/>
                             <constraint firstItem="eXK-9x-lFJ" firstAttribute="leading" secondItem="sbG-UY-Oga" secondAttribute="leading" constant="20" id="2By-eX-9yR"/>
-                            <constraint firstItem="sbG-UY-Oga" firstAttribute="trailing" secondItem="7QJ-2U-dnv" secondAttribute="trailing" constant="8" id="2uH-CT-4eQ"/>
-                            <constraint firstItem="sbG-UY-Oga" firstAttribute="trailing" secondItem="F28-TR-sZu" secondAttribute="trailing" constant="8" id="52T-1t-xZY"/>
-                            <constraint firstItem="F28-TR-sZu" firstAttribute="top" secondItem="eXK-9x-lFJ" secondAttribute="bottom" constant="8" symbolic="YES" id="Bpr-UF-h2n"/>
                             <constraint firstItem="sbG-UY-Oga" firstAttribute="bottom" secondItem="vYi-fd-yz4" secondAttribute="bottom" constant="20" id="Byr-OS-D7d"/>
                             <constraint firstItem="eXK-9x-lFJ" firstAttribute="top" secondItem="sbG-UY-Oga" secondAttribute="top" constant="30" id="CyK-0m-nlU"/>
-                            <constraint firstItem="vYi-fd-yz4" firstAttribute="top" secondItem="7QJ-2U-dnv" secondAttribute="bottom" constant="8" symbolic="YES" id="KHW-At-X1C"/>
                             <constraint firstItem="OR1-wm-NF6" firstAttribute="leading" secondItem="sbG-UY-Oga" secondAttribute="leading" constant="20" id="L0H-6r-JBN"/>
                             <constraint firstItem="sbG-UY-Oga" firstAttribute="trailing" secondItem="OR1-wm-NF6" secondAttribute="trailing" constant="20" id="Nue-B2-AHN"/>
-                            <constraint firstItem="OR1-wm-NF6" firstAttribute="top" secondItem="F28-TR-sZu" secondAttribute="bottom" constant="8" symbolic="YES" id="OlO-IF-aid"/>
-                            <constraint firstItem="F28-TR-sZu" firstAttribute="leading" secondItem="sbG-UY-Oga" secondAttribute="leading" constant="8" id="Xsj-oH-3eq"/>
-                            <constraint firstItem="7QJ-2U-dnv" firstAttribute="top" secondItem="OR1-wm-NF6" secondAttribute="bottom" constant="8" symbolic="YES" id="Yxt-yI-0ku"/>
+                            <constraint firstItem="OR1-wm-NF6" firstAttribute="centerY" secondItem="chu-WU-cOU" secondAttribute="centerY" id="TRI-nr-htv"/>
                             <constraint firstItem="sbG-UY-Oga" firstAttribute="trailing" secondItem="vYi-fd-yz4" secondAttribute="trailing" constant="20" id="btd-SV-s32"/>
-                            <constraint firstItem="7QJ-2U-dnv" firstAttribute="height" secondItem="F28-TR-sZu" secondAttribute="height" id="gex-2A-uh1"/>
                             <constraint firstItem="vYi-fd-yz4" firstAttribute="leading" secondItem="sbG-UY-Oga" secondAttribute="leading" constant="20" id="hf8-yT-DkB"/>
-                            <constraint firstItem="7QJ-2U-dnv" firstAttribute="leading" secondItem="sbG-UY-Oga" secondAttribute="leading" constant="8" id="zNG-Tk-pl0"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="sbG-UY-Oga"/>
                     </view>
@@ -147,7 +133,7 @@
                         <outlet property="nameTextField" destination="5SB-aD-Hxg" id="pDc-Kf-g3Y"/>
                         <outlet property="saveButton" destination="CJx-fr-atD" id="Pfl-RS-Sbs"/>
                         <outlet property="surnameTextField" destination="JS8-d5-JqY" id="dbY-fi-SBJ"/>
-                        <outlet property="updaneData" destination="eXK-9x-lFJ" id="e71-RL-iSd"/>
+                        <outlet property="updateData" destination="eXK-9x-lFJ" id="e71-RL-iSd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="riK-c2-KMC" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
